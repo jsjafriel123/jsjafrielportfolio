@@ -1,10 +1,19 @@
+'use client';
+import { motion } from 'framer-motion';
+
 export default function PortfolioSection() {
   return (
     <section
       id='projects'
       className='flex h-441.75 w-98.25 flex-col items-center gap-6 px-4 py-10 lg:h-[836.67px] lg:w-360 lg:gap-12 lg:px-30 lg:py-20'
     >
-      <div className='flex h-52.5 w-90.25 flex-col items-center gap-6 lg:h-31 lg:w-300 lg:flex-row lg:justify-between'>
+      <motion.div
+        className='flex h-52.5 w-90.25 flex-col items-center gap-6 lg:h-31 lg:w-300 lg:flex-row lg:justify-between'
+        initial={{ opacity: 0, rotateY: 360, scale: 0 }}
+        whileInView={{ opacity: 1, rotateY: 0, scale: 1 }}
+        transition={{ duration: 1, ease: 'easeOut' }}
+        style={{ perspective: 1000, transformOrigin: 'bottom' }}
+      >
         <div className='h-32.5 w-90.25 gap-2 lg:h-31 lg:w-171.5'>
           <p className='text-display-sm lg:text-display-xl font-bold tracking-[-2%] text-neutral-950 lg:tracking-[-3%]'>
             Design to <span className='text-primary-300'>Code Accuracy</span>
@@ -26,10 +35,41 @@ export default function PortfolioSection() {
             />
           </div>
         </button>
-      </div>
-      {/* Portfolio Cards 1*/}
-      <div className='flex h-363.25 w-full flex-col justify-center gap-5 lg:h-[504.67px] lg:w-300 lg:flex-row'>
-        <div className='flex h-117.75 w-90.25 flex-col lg:h-[504.67px] lg:w-[386.67px]'>
+      </motion.div>
+      <motion.div
+        className='flex h-363.25 w-full flex-col justify-center gap-5 lg:h-[504.67px] lg:w-300 lg:flex-row'
+        initial='hidden'
+        whileInView='visible'
+        variants={{
+          hidden: { opacity: 0 },
+          visible: {
+            opacity: 1,
+            transition: {
+              staggerChildren: 0.2,
+              // delayChildren: 3,
+            },
+          },
+        }}
+        style={{ transformOrigin: 'right' }}
+      >
+        {/* Portfolio Cards 1*/}
+        <motion.div
+          className='flex h-117.75 w-90.25 flex-col lg:h-[504.67px] lg:w-[386.67px]'
+          variants={{
+            hidden: {
+              translateX: '100vh',
+            },
+            visible: {
+              translateX: 0,
+            },
+          }}
+          transition={{
+            type: 'spring',
+            stiffness: 200,
+            damping: 15,
+            // delay: 1,
+          }}
+        >
           <div className='relative flex size-90.25 items-center justify-center gap-2 rounded-3xl bg-neutral-100 p-4 lg:size-[386.67px]'>
             <img
               src='/assets/image-portfolio-1.svg'
@@ -60,9 +100,25 @@ export default function PortfolioSection() {
               />
             </button>
           </div>
-        </div>
+        </motion.div>
         {/* Portfolio Cards 2*/}
-        <div className='flex h-117.75 w-90.25 flex-col lg:h-[504.67px] lg:w-[386.67px]'>
+        <motion.div
+          className='flex h-117.75 w-90.25 flex-col lg:h-[504.67px] lg:w-[386.67px]'
+          variants={{
+            hidden: {
+              translateX: '100vh',
+            },
+            visible: {
+              translateX: 0,
+            },
+          }}
+          transition={{
+            type: 'spring',
+            stiffness: 200,
+            damping: 15,
+            // delay: 1,
+          }}
+        >
           <div className='relative flex size-90.25 items-center justify-center gap-2 rounded-3xl bg-neutral-100 p-4 lg:size-[386.67px]'>
             <img
               src='/assets/image-portfolio-2.svg'
@@ -93,9 +149,25 @@ export default function PortfolioSection() {
               />
             </button>
           </div>
-        </div>
+        </motion.div>
         {/* Portfolio Cards 3*/}
-        <div className='flex h-117.75 w-90.25 flex-col lg:h-[504.67px] lg:w-[386.67px]'>
+        <motion.div
+          className='flex h-117.75 w-90.25 flex-col lg:h-[504.67px] lg:w-[386.67px]'
+          variants={{
+            hidden: {
+              translateX: '100vh',
+            },
+            visible: {
+              translateX: 0,
+            },
+          }}
+          transition={{
+            type: 'spring',
+            stiffness: 200,
+            damping: 15,
+            // delay: 1,
+          }}
+        >
           <div className='relative flex size-90.25 items-center justify-center gap-2 rounded-3xl bg-neutral-100 p-4 lg:size-[386.67px]'>
             <img
               src='/assets/image-portfolio-3.svg'
@@ -126,8 +198,8 @@ export default function PortfolioSection() {
               />
             </button>
           </div>
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
     </section>
   );
 }

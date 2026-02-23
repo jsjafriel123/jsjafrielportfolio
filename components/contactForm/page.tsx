@@ -2,6 +2,7 @@
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { motion } from 'framer-motion';
 
 import {
   Form,
@@ -37,12 +38,35 @@ export default function ContactForm() {
   }
 
   return (
-    <section
+    <motion.section
       id='contact'
       className='bg-background flex h-[966.46px] w-98.25 flex-col items-center gap-6 px-4 py-10 lg:h-186 lg:w-360 lg:flex-row lg:items-start lg:justify-between lg:gap-12 lg:p-30'
+      initial='hidden'
+      whileInView='visible'
+      variants={{
+        hidden: { opacity: 0 },
+        visible: {
+          opacity: 1,
+          transition: { staggerChildren: 0.4 },
+        },
+      }}
     >
       {/* Header */}
-      <div className='h-59 w-90.25 gap-6 lg:h-76.5 lg:w-135'>
+      <motion.div
+        className='h-59 w-90.25 gap-6 lg:h-76.5 lg:w-135'
+        // whileHover={{ skewY: 20, skewX: -50 }}
+        style={{ perspective: 1000, transformOrigin: 'left' }}
+        variants={{
+          hidden: { opacity: 0, skewY: 20, skewX: -50 },
+          visible: { opacity: 1, skewY: 0, skewX: 0 },
+        }}
+        transition={{
+          type: 'spring',
+          stiffness: 100,
+          damping: 5,
+          // // delay: 1,
+        }}
+      >
         <div className='flex h-25.5 w-90.25 flex-col gap-2 text-neutral-950 lg:h-31 lg:w-135'>
           <p className='text-display-sm lg:text-display-xl font-bold tracking-[-2%] lg:tracking-[-3%]'>
             Let's Work Together
@@ -69,9 +93,23 @@ export default function ContactForm() {
             className='size-27.5 lg:size-35.5'
           />
         </div>
-      </div>
+      </motion.div>
       {/* Form */}
-      <div className='flex h-[626.45] w-90.25 flex-col items-center lg:-mt-[158.45px] lg:h-[662.45] lg:w-153'>
+      <motion.div
+        className='flex h-[626.45] w-90.25 flex-col items-center lg:-mt-[158.45px] lg:h-[662.45] lg:w-153'
+        // whileHover={{ skewY: -20, skewX: 50 }}
+        style={{ perspective: 1000, transformOrigin: 'right' }}
+        variants={{
+          hidden: { opacity: 0, skewY: -20, skewX: 50 },
+          visible: { opacity: 1, skewY: 0, skewX: 0 },
+        }}
+        transition={{
+          type: 'spring',
+          stiffness: 100,
+          damping: 5,
+          // // delay: 1,
+        }}
+      >
         <img
           src='/assets/image-MyCartoon.svg'
           alt='My cartoon'
@@ -156,7 +194,7 @@ export default function ContactForm() {
             </form>
           </Form>
         </div>
-      </div>
-    </section>
+      </motion.div>
+    </motion.section>
   );
 }

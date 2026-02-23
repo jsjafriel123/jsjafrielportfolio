@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { Button } from '../ui/button';
+import { motion } from 'framer-motion';
 type testicard = {
   id: number;
   rating: string;
@@ -51,9 +52,32 @@ export default function TestimonySection() {
   };
 
   return (
-    <section className='bg-background flex h-[815.33px] w-98.25 flex-col items-center gap-6 px-5 py-10 lg:h-[808.33px] lg:w-360 lg:gap-12 lg:px-30 lg:py-20'>
+    <motion.section
+      className='bg-background flex h-[815.33px] w-98.25 flex-col items-center gap-6 px-5 py-10 lg:h-[808.33px] lg:w-360 lg:gap-12 lg:px-30 lg:py-20'
+      initial='hidden'
+      whileInView='visible'
+      variants={{
+        hidden: { opacity: 0 },
+        visible: {
+          opacity: 1,
+          transition: {
+            staggerChildren: 0.4,
+          },
+        },
+      }}
+    >
       {/* Header */}
-      <div className='h-11xl flex w-88.25 flex-col justify-center gap-2 lg:h-23.5 lg:w-211.75'>
+      <motion.div
+        className='h-11xl flex w-88.25 flex-col justify-center gap-2 lg:h-23.5 lg:w-211.75'
+        variants={{
+          hidden: { opacity: 0, scale: 0 },
+          visible: { opacity: 1, scale: 1 },
+        }}
+        transition={{
+          duration: 1,
+          ease: 'easeOut',
+        }}
+      >
         <p className='text-display-sm lg:text-display-xl h-19 text-center font-bold tracking-[-2%] text-neutral-950 lg:w-211.75 lg:tracking-[-3%]'>
           What They Say About Working With Me
         </p>
@@ -61,10 +85,20 @@ export default function TestimonySection() {
           Real words from clients, teammates, and mentors I've collaborated with
           on various projects.
         </p>
-      </div>
+      </motion.div>
       {/* Testimony Carousel */}
       <div className='relative flex h-[571.33px] w-88.25 flex-col items-center justify-between gap-6 lg:h-[506.33px] lg:w-300'>
-        <div className='lg:h-109.25'>
+        <motion.div
+          className='lg:h-109.25'
+          variants={{
+            hidden: { opacity: 0, scale: 0 },
+            visible: { opacity: 1, scale: 1 },
+          }}
+          transition={{
+            duration: 1,
+            ease: 'easeOut',
+          }}
+        >
           {cards.map((card, index) => {
             const offset = index - activeIndex;
 
@@ -109,9 +143,19 @@ export default function TestimonySection() {
               </section>
             );
           })}
-        </div>
+        </motion.div>
 
-        <div className='mt-6xl flex h-[45.33px] w-[102.67px] items-center justify-between gap-3'>
+        <motion.div
+          className='mt-6xl flex h-[45.33px] w-[102.67px] items-center justify-between gap-3'
+          variants={{
+            hidden: { opacity: 0, scale: 0 },
+            visible: { opacity: 1, scale: 1 },
+          }}
+          transition={{
+            duration: 1,
+            ease: 'easeOut',
+          }}
+        >
           <Button
             onClick={prev}
             variant={'outline'}
@@ -136,8 +180,8 @@ export default function TestimonySection() {
               className='size-6'
             />
           </Button>
-        </div>
+        </motion.div>
       </div>
-    </section>
+    </motion.section>
   );
 }
