@@ -13,7 +13,7 @@ const techs = [
   {
     key: 1,
     isOdd: true,
-    url: '/assets/Icon-HTML.svg',
+    url: '/assets/icon-HTML.svg',
     name: 'HTML 5',
     description: 'Modern semantic structur web pages with HTML5.',
   },
