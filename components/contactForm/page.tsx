@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { motion } from 'framer-motion';
+import { useState } from 'react';
 
 import {
   Form,
@@ -22,9 +23,11 @@ const formSchema = z.object({
   email: z.email({ message: 'Invalid email' }),
   message: z.string().min(10, { message: 'Message too short' }),
 });
-
+type FormValues = z.infer<typeof formSchema>;
 export default function ContactForm() {
-  const form = useForm({
+  const [isSending, setIsSending] = useState(false);
+
+  const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       name: '',
@@ -33,8 +36,29 @@ export default function ContactForm() {
     },
   });
 
-  function onSubmit(values: any) {
-    console.log('Form:', values);
+  async function onSubmit(values: FormValues) {
+    setIsSending(true);
+
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(values),
+      });
+
+      if (!res.ok) {
+        throw new Error('Failed to send message');
+      }
+
+      alert('Message sent successfully!');
+      form.reset();
+    } catch (error) {
+      alert('Something went wrong. Please try again.');
+    } finally {
+      setIsSending(false);
+    }
   }
 
   return (
@@ -187,9 +211,10 @@ export default function ContactForm() {
               />
               <Button
                 type='submit'
+                disabled={isSending}
                 className='bg-primary-300 hover:bg-primary-400 h-11 w-full gap-1 self-center rounded-full p-2 text-sm font-bold text-white focus:outline-none lg:h-12'
               >
-                Let's Talk
+                {isSending ? 'Sending...' : "Let's Talk"}
               </Button>
             </form>
           </Form>
