@@ -34,7 +34,7 @@ const techs = [
   {
     key: 4,
     isOdd: false,
-    url: '/assets/Icon-JS.svg',
+    url: '/assets/icon-JS.svg',
     name: 'JavaScript',
     description: 'Interactive JavaScript for dynamic user engagement.',
   },
