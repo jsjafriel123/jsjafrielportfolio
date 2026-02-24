@@ -28,6 +28,7 @@ export const Statistics = () => {
       {stats.map((stat, index) => (
         <>
           <motion.div
+            key={index}
             className={`border-primary-300 h-[60.67px] w-px border lg:h-px lg:w-full ${index === 0 ? 'hidden' : index === 2 ? 'hidden lg:flex' : 'flex'}`}
             variants={{
               hidden: {

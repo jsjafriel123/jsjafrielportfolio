@@ -90,7 +90,7 @@ export default function SummarySection() {
       >
         {faqData.map((faq) => (
           <AccordionItem
-            // key={faq.key}
+            key={faq.key}
             value={faq.key}
             className='group flex h-auto w-90.25 flex-col gap-2 border-none text-neutral-950 lg:w-300 lg:gap-3'
           >

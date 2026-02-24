@@ -54,8 +54,8 @@ export const TechsLogo = () => {
       }}
       style={{ transformOrigin: 'top' }}
     >
-      {techs.map((tech) => (
-        <div className='tech'>
+      {techs.map((tech, index) => (
+        <div key={index} className='tech'>
           <img src={tech.url} alt={tech.alt} className={tech.className} />
         </div>
       ))}

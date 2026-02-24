@@ -22,8 +22,7 @@ const techs = [
     isOdd: false,
     url: '/assets/icon-CSS.svg',
     name: 'CSS',
-    description:
-      'A modern, lightweight, and highly performance user interface.',
+    description: 'A modern, lightweight, and highly performance UI.',
   },
   {
     key: 3,
